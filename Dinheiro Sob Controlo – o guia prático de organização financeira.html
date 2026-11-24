@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dinheiro Sob Controlo – o guia prático de organização financeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;700&family=Anton&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a09;--card:#1a1a17;--card2:#24241f;--ink:#f6f3ea;--mut:#a9a699;--y:#ffd60a;--yi:#14130e;--line:#34332c;--red:#b8321a;--hero:#fff;--heroink:#14130e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f2ecdd;--card:#fffaf0;--card2:#efe7d4;--ink:#14130e;--mut:#5f5b4d;--line:#d8cfb8;color-scheme:light}}
+:root[data-theme="dark"]{--bg:#0a0a09;--card:#1a1a17;--card2:#24241f;--ink:#f6f3ea;--mut:#a9a699;--line:#34332c}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(90px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.65 Manrope,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Unbounded,Manrope,sans-serif;line-height:1.12;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(1.55rem,4.6vw,2.7rem);font-weight:800}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--y);outline-offset:3px}
+.wrap{width:min(1120px,100% - 2rem);margin-inline:auto}
+section{padding:clamp(3rem,8vw,6rem) 0}
+mark{background:var(--y);color:var(--yi);padding:.02em .22em;border-radius:.25em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:0;cursor:pointer;font:700 .95rem Manrope,sans-serif;padding:.95rem 1.5rem;border-radius:99px;background:var(--y);color:var(--yi);transition:transform .2s,box-shadow .2s;min-height:48px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px -8px var(--y)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+.btn.ghost:hover{box-shadow:none;background:rgba(127,127,127,.15)}
+.buy{position:relative;overflow:hidden;font-weight:800;animation:pulse 2.2s infinite}
+.buy::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,#fff9,transparent);transform:skewX(-20deg);animation:shine 3s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #ffd60aa6}70%{box-shadow:0 0 0 16px #ffd60a00}100%{box-shadow:0 0 0 0 #ffd60a00}}
+@keyframes shine{0%,55%{left:-70%}100%{left:130%}}
+.btn.big{font-size:1.1rem;padding:1.15rem 2rem;min-height:60px;width:100%;max-width:420px}
+.price{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin:1.2rem 0 1rem}
+.price b{font:800 clamp(2.4rem,9vw,3.6rem)/1 Unbounded,sans-serif;color:var(--y)}
+.price span{color:var(--mut);font-size:.95rem}
+.trust{font-size:.82rem;color:var(--mut);margin:.9rem 0 0!important}
+.hero .trust{color:#5f5b4d}
+/* nav */
+nav{position:fixed;z-index:50;left:0;right:0;top:calc(.7rem + env(safe-area-inset-top,0px));display:flex;justify-content:center;pointer-events:none}
+.pill{pointer-events:auto;width:min(1120px,100% - 1.4rem);background:#0a0a09;color:#f6f3ea;border-radius:99px;padding:.55rem .6rem .55rem 1.3rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;box-shadow:0 8px 30px -10px #000a;transition:transform .35s}
+.pill.hide{transform:translateY(-140%)}
+.logo{font:800 .95rem/1 Unbounded,sans-serif;letter-spacing:-.02em}.logo i{color:var(--y);font-style:normal}
+.links{display:flex;gap:1.6rem;font-size:.88rem;font-weight:500}
+.links a{opacity:.8;transition:opacity .2s,color .2s}.links a:hover{opacity:1;color:var(--y)}
+.pill .btn{padding:.6rem 1.15rem;min-height:42px;font-size:.85rem}
+.burger{display:none;background:none;border:0;color:inherit;width:44px;height:44px;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:currentColor;margin:5px auto;transition:.3s}
+.burger[aria-expanded=true] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.burger[aria-expanded=true] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+.drawer{position:fixed;inset:0;z-index:40;background:#0a0a09ee;backdrop-filter:blur(10px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1.4rem;font:800 1.5rem Unbounded,sans-serif;color:#f6f3ea;opacity:0;visibility:hidden;transition:.3s}
+.drawer.open{opacity:1;visibility:visible}
+@media(max-width:820px){.links,.pill>.btn{display:none}.burger{display:block;color:#f6f3ea}}
+/* hero */
+.hero{background:var(--hero);color:var(--heroink);border-radius:0 0 clamp(32px,6vw,72px) clamp(32px,6vw,72px);padding:calc(7rem + env(safe-area-inset-top,0px)) 0 4rem;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(2rem,6.2vw,4.2rem);font-weight:800}
+.hero h1 span{display:inline-block;opacity:0;transform:translateY(40px) rotate(2deg);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+.hero p.lead{margin:1.4rem 0 1.8rem;max-width:34rem;font-size:1.08rem;color:#3d3b30;opacity:0;animation:up .8s .55s forwards}
+.cta-row{display:flex;gap:.8rem;flex-wrap:wrap;opacity:0;animation:up .8s .7s forwards}
+.hero .btn.ghost{color:#14130e}
+.star{position:absolute;color:var(--y);font-size:3.4rem;animation:spin 12s linear infinite;top:5.6rem;left:3%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage{perspective:900px;display:grid;place-items:center;position:relative}
+.stage::before{content:"";position:absolute;width:82%;aspect-ratio:1;border-radius:50%;background:#efede4;z-index:0}
+.cover{position:relative;z-index:1;width:min(300px,72%);aspect-ratio:2/3;background:#f1ebdc;border-radius:6px;padding:7% 8%;display:flex;flex-direction:column;color:#151515;box-shadow:0 30px 60px -20px #0009,-10px 0 0 -4px #d9d0b8;transform-style:preserve-3d;transition:transform .15s ease-out;animation:float 5s ease-in-out infinite}
+@keyframes float{50%{translate:0 -10px}}
+.cover small{font:500 .45rem/1.3 monospace;letter-spacing:.12em;text-transform:uppercase;border-bottom:1.5px solid #151515;padding-bottom:.5rem;display:flex;justify-content:space-between}
+.cover b{font:400 clamp(2rem,9vw,3.4rem)/.9 Anton,Impact,sans-serif;margin-top:16%;display:block}
+.cover b em{font-style:normal;color:var(--red);display:block;font-size:.98em}
+.cover ul{list-style:none;padding:0;margin:auto 0 0;font:500 .62rem/1 monospace}
+.cover li{display:flex;justify-content:space-between;padding:.45rem 0;border-top:1px solid #bdb5a0}
+.badge{position:absolute;z-index:2;right:2%;bottom:6%;background:var(--y);color:var(--yi);font:800 .72rem/1.2 Unbounded,sans-serif;padding:.9rem;border-radius:50%;width:92px;height:92px;display:grid;place-items:center;text-align:center;rotate:12deg;animation:pop 3s ease-in-out infinite}
+@keyframes pop{50%{scale:1.08}}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;text-align:left}.stage{order:-1;margin-bottom:.5rem}.star{top:5.4rem;left:auto;right:6%;font-size:2.4rem}}
+/* stats */
+.stats{background:var(--card);border:1px solid var(--line);border-radius:28px;display:grid;grid-template-columns:repeat(4,1fr);padding:1.8rem 1rem;margin-top:-2.4rem;position:relative;z-index:3;box-shadow:0 20px 50px -30px #000}
+.stat{text-align:center;padding:.4rem}
+.stat b{display:block;font:800 clamp(1.5rem,4.4vw,2.6rem)/1 Unbounded,sans-serif;color:var(--y)}
+.stat span{font-size:.82rem;color:var(--mut)}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr;gap:1rem .2rem}}
+.sub{text-align:center;color:var(--mut);margin-top:1.4rem}
+/* about */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:start}
+.two p+p{margin-top:1rem}.two p{color:var(--mut)}
+.pains{display:grid;gap:.8rem}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.1rem 1.3rem;display:flex;gap:1rem;align-items:center;transition:transform .25s,border-color .25s}
+.pain:hover{transform:translateX(8px);border-color:var(--y)}
+.pain i{font-style:normal;color:var(--y);font-size:1.4rem}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
+/* chapters */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:36px;padding:clamp(1.2rem,4vw,3rem);position:relative;overflow:hidden}
+.panel::after{content:"";position:absolute;right:-80px;bottom:-80px;width:300px;height:300px;background:radial-gradient(var(--y),transparent 65%);opacity:.12;pointer-events:none}
+.chap{display:grid;grid-template-columns:1fr 1.05fr;gap:2rem;margin-top:2rem;position:relative;z-index:1}
+.tabs{display:grid;gap:.6rem}
+.tab{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.9rem 1.2rem;font:600 .93rem Manrope,sans-serif;text-align:left;cursor:pointer;display:flex;gap:.9rem;align-items:center;transition:.25s;min-height:48px}
+.tab span{width:28px;height:28px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-size:.78rem;flex:none;transition:.25s}
+.tab:hover{border-color:var(--y)}
+.tab[aria-selected=true]{background:var(--y);color:var(--yi);border-color:var(--y);transform:translateX(6px)}
+.tab[aria-selected=true] span{background:var(--yi);color:var(--y)}
+.detail{background:var(--bg);border-radius:26px;padding:clamp(1.3rem,3vw,2.2rem);border:1px solid var(--line);min-height:280px;animation:fade .45s}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}}
+.detail h3{font-size:1.3rem;margin-bottom:.7rem}.detail p{color:var(--mut)}
+.detail ul{padding:0;margin:1.1rem 0 0;list-style:none;display:grid;gap:.55rem}
+.detail li{padding-left:1.7rem;position:relative}
+.detail li::before{content:"✦";position:absolute;left:0;color:var(--y)}
+.pg{display:inline-block;margin-top:1.2rem;font-size:.82rem;background:var(--card2);padding:.3rem .8rem;border-radius:99px}
+@media(max-width:820px){.chap{grid-template-columns:1fr}.tab[aria-selected=true]{transform:none}}
+/* simulator */
+.sim{display:grid;grid-template-columns:.9fr 1.1fr;gap:2rem;align-items:center}
+.seg{display:flex;gap:.4rem;background:var(--card);padding:.35rem;border-radius:99px;border:1px solid var(--line);width:fit-content;max-width:100%;margin:1.4rem 0}
+.seg button{border:0;background:none;color:var(--ink);font:700 .88rem Manrope,sans-serif;padding:.7rem 1.1rem;border-radius:99px;cursor:pointer;min-height:44px;transition:.25s}
+.seg button[aria-pressed=true]{background:var(--y);color:var(--yi)}
+.bar{display:flex;height:54px;border-radius:99px;overflow:hidden;background:var(--card2);margin:1.2rem 0 .8rem}
+.bar div{transition:width .8s cubic-bezier(.2,.8,.2,1);display:grid;place-items:center;font:700 .8rem Manrope;overflow:hidden;white-space:nowrap}
+.b1{background:#3b3a33;color:#f6f3ea}.b2{background:var(--card2);color:var(--ink)}.b3{background:var(--y);color:var(--yi)}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.82rem;color:var(--mut)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:.4rem}
+.out{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:1.5rem;margin-top:1.4rem}
+.out big{display:block;font:800 clamp(1.7rem,6vw,2.6rem)/1.1 Unbounded,sans-serif;color:var(--y);margin:.4rem 0}
+input[type=range]{width:100%;accent-color:var(--y);height:34px}
+.note{font-size:.78rem;color:var(--mut);margin-top:.9rem}
+.sliderlbl{display:flex;justify-content:space-between;font-size:.9rem;font-weight:700}
+@media(max-width:820px){.sim{grid-template-columns:1fr}}
+/* marquee */
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:1.2rem 0;background:var(--card)}
+.mq div{display:flex;gap:2.5rem;width:max-content;animation:mq 26s linear infinite;font:800 clamp(1.2rem,3.4vw,2rem) Unbounded,sans-serif;white-space:nowrap}
+.mq i{color:var(--y);font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* plan */
+.weeks{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.6rem 0 1rem}
+.weeks button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:.7rem 1.2rem;font:700 .88rem Manrope;cursor:pointer;min-height:44px;transition:.25s}
+.weeks button[aria-pressed=true]{background:var(--y);color:var(--yi);border-color:var(--y)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem}
+.day{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:.9rem 1.1rem;display:flex;gap:.9rem;cursor:pointer;text-align:left;color:var(--ink);font:500 .92rem/1.45 Manrope;transition:.25s;animation:fade .4s backwards}
+.day b{font:800 .85rem Unbounded;color:var(--y);flex:none;min-width:2.1rem}
+.day.done{background:var(--y);color:var(--yi);border-color:var(--y)}.day.done b{color:var(--yi)}
+.prog{height:8px;border-radius:9px;background:var(--card2);margin-top:1.4rem;overflow:hidden}
+.prog div{height:100%;width:0;background:var(--y);transition:width .5s}
+.proglbl{font-size:.85rem;color:var(--mut);margin-top:.6rem}
+/* faq */
+.faq{display:grid;gap:.7rem;margin-top:2rem;max-width:820px}
+details{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:0 1.3rem;transition:border-color .25s}
+details[open]{border-color:var(--y)}
+summary{cursor:pointer;list-style:none;padding:1.1rem 0;font-weight:700;display:flex;justify-content:space-between;gap:1rem;min-height:48px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:800 1.4rem Unbounded;color:var(--y);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mut);padding-bottom:1.2rem}
+/* cta */
+.cta{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:36px;padding:clamp(1.5rem,5vw,3.5rem)}
+.cta p{color:var(--mut);margin:1rem 0 1.6rem}
+.checks{display:grid;gap:.6rem;list-style:none;padding:0;margin:0}
+.checks li{display:flex;gap:.7rem;align-items:center;background:var(--bg);border-radius:16px;padding:.8rem 1rem;font-weight:600}
+.checks li::before{content:"✓";display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--y);color:var(--yi);font-weight:800;font-size:.8rem;flex:none}
+@media(max-width:820px){.cta{grid-template-columns:1fr}}
+/* footer */
+footer{background:var(--y);color:#14130e;border-radius:clamp(32px,6vw,72px) clamp(32px,6vw,72px) 0 0;padding:3rem 0 calc(6rem + env(safe-area-inset-bottom,0px));margin-top:3rem}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+footer h3{font-size:.95rem;margin-bottom:.8rem}footer ul{list-style:none;padding:0;margin:0;display:grid;gap:.4rem;font-size:.92rem}
+footer a:hover{text-decoration:underline}
+.legal{font-size:.78rem;margin-top:2rem;padding-top:1.2rem;border-top:1px solid #14130e44;max-width:70ch}
+@media(max-width:700px){.fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}}
+/* sticky buy bar mobile */
+.sticky{position:fixed;z-index:45;left:.7rem;right:.7rem;bottom:calc(.7rem + env(safe-area-inset-bottom,0px));background:#0a0a09;color:#f6f3ea;border-radius:99px;padding:.45rem .5rem .45rem 1.3rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;transform:translateY(160%);transition:transform .4s;box-shadow:0 10px 30px -8px #000c;font-weight:700;font-size:.9rem}
+.sticky.show{transform:none}
+@media(min-width:821px){.sticky{left:auto;width:360px;right:1.4rem}}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hero h1 span,.hero p.lead,.cta-row{opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="pill" id="pill">
+<a class="logo" href="#topo">dinheiro<i>sob</i>controlo</a>
+<div class="links"><a href="#capitulos">Capítulos</a><a href="#simulador">Simulador</a><a href="#plano">Plano de 30 dias</a><a href="#faq">Dúvidas</a></div>
+<a class="btn buy" href="#comprar">Comprar por R$ 14,97</a>
+<button class="burger" id="burger" aria-expanded="false" aria-label="Abrir menu"><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><a href="#capitulos">Capítulos</a><a href="#simulador">Simulador</a><a href="#plano">Plano de 30 dias</a><a href="#faq">Dúvidas</a><a class="btn buy" href="#comprar">Comprar por R$ 14,97</a></div>
+
+<header class="hero" id="topo">
+<div class="star" aria-hidden="true">✦</div>
+<div class="wrap">
+<div>
+<h1><span>Ponha</span> <span>o</span> <span>seu</span> <span>dinheiro</span> <span>sob</span> <span>controlo.</span></h1>
+<p class="lead">Um guia prático de organização financeira em 50 páginas para quem quer saber para onde vai o dinheiro, poupar com inteligência e construir um futuro mais seguro. Com exemplos reais para o Brasil, Angola e Portugal.</p>
+<div class="cta-row"><a class="btn buy big" href="#comprar">Quero o meu por R$ 14,97</a><a class="btn ghost" href="#capitulos">Ver o que vou aprender</a></div>
+<p class="trust" style="margin-top:1rem;opacity:0;animation:up .8s .9s forwards">Pagamento único e seguro pela Hotmart. Acesso imediato ao PDF.</p>
+</div>
+<div class="stage" id="stage">
+<div class="cover" id="cover" aria-label="Capa do e-book Dinheiro Sob Controlo">
+<small><span>Guia prático de organização financeira</span><span>Edição internacional</span></small>
+<b>DINHEIRO<em>SOB CONTROLO</em></b>
+<ul><li><span>Brasil</span><span>R$ 300</span></li><li><span>Angola</span><span>30.000 Kz</span></li><li><span>Portugal</span><span>150 €</span></li></ul>
+</div>
+<div class="badge">3 países<br>3 moedas</div>
+</div>
+</div>
+</header>
+
+<div class="wrap">
+<div class="stats rv" id="stats">
+<div class="stat"><b data-n="50">0</b><span>páginas práticas</span></div>
+<div class="stat"><b data-n="7">0</b><span>capítulos</span></div>
+<div class="stat"><b data-n="8">0</b><span>ferramentas para preencher</span></div>
+<div class="stat"><b data-n="30">0</b><span>dias de plano guiado</span></div>
+</div>
+<p class="sub rv">Para quem vive no Brasil, em Angola ou em Portugal, e quer organizar o dinheiro sem complicações.</p>
+</div>
+
+<section><div class="wrap two">
+<div class="rv"><h2>O problema não é só quanto ganha. É <mark>para onde vai</mark>.</h2></div>
+<div class="rv"><p>Quem recebe muito e gasta sem registar pode chegar ao fim do mês sem nada. Quem recebe menos, mas se organiza, consegue guardar uma parte. O que decide o resultado é a organização.</p><p>Este guia leva-o do primeiro registo de gastos até ao fundo de emergência, passando pelo orçamento e pelas dívidas, sempre com contas simples e na sua moeda.</p>
+<div class="pains" style="margin-top:1.4rem"><div class="pain"><i>✦</i>O ordenado desaparece e não sabe onde foi parar</div><div class="pain"><i>✦</i>Qualquer imprevisto vira dívida</div><div class="pain"><i>✦</i>Quer poupar, mas nunca sobra nada</div></div></div>
+</div></section>
+
+<section id="capitulos"><div class="wrap"><div class="panel rv">
+<h2>O que vai <mark>aprender</mark></h2>
+<p style="color:var(--mut);margin-top:.8rem;max-width:44rem">Sete capítulos, cada um com exemplos nos três países, exercícios e uma checklist para fechar. Toque num capítulo para ver o que traz.</p>
+<div class="chap"><div class="tabs" role="tablist" id="tabs"></div><div class="detail" id="detail" aria-live="polite"></div></div>
+</div></div></section>
+
+<section id="simulador"><div class="wrap sim">
+<div class="rv">
+<h2>Veja como as contas <mark>funcionam</mark></h2>
+<p style="color:var(--mut);margin-top:1rem">Estas são as simulações do livro: um orçamento de exemplo por país, na moeda de cada um. Escolha o país e mexa no valor que guarda por mês.</p>
+<div class="seg" role="group" aria-label="País" id="seg"><button data-c="br" aria-pressed="true">Brasil</button><button data-c="ao" aria-pressed="false">Angola</button><button data-c="pt" aria-pressed="false">Portugal</button></div>
+</div>
+<div class="rv">
+<div class="sliderlbl"><span>Rendimento líquido</span><span id="inc"></span></div>
+<div class="bar" id="bar"><div class="b1" id="b1"></div><div class="b2" id="b2"></div><div class="b3" id="b3"></div></div>
+<div class="legend"><span><i style="background:#3b3a33"></i>Essenciais</span><span><i style="background:var(--card2);border:1px solid var(--line)"></i>Outras despesas</span><span><i style="background:var(--y)"></i>Saldo</span></div>
+<div class="out"><label class="sliderlbl" for="sv"><span>Quanto guardo por mês</span><span id="svv"></span></label><input type="range" id="sv"><p style="margin-top:.8rem;color:var(--mut)" id="goal"></p><big id="months"></big><p id="when" style="color:var(--mut)"></p></div>
+<p class="note">Valores ilustrativos, apresentados como simulação educativa. Não representam salários nem preços oficiais e não há conversão entre moedas.</p>
+</div></div></section>
+
+<div class="mq" aria-hidden="true"><div><span>Clareza</span><i>✦</i><span>Controlo</span><i>✦</i><span>Segurança</span><i>✦</i><span>Futuro</span><i>✦</i><span>Clareza</span><i>✦</i><span>Controlo</span><i>✦</i><span>Segurança</span><i>✦</i><span>Futuro</span><i>✦</i></div></div>
+
+<section id="plano"><div class="wrap">
+<div class="rv"><h2>Um plano de <mark>30 dias</mark>, um passo por dia</h2>
+<p style="color:var(--mut);margin-top:1rem;max-width:44rem">Cerca de 15 a 30 minutos por dia. Experimente: toque num dia para o marcar como feito.</p></div>
+<div class="weeks" id="weeks"></div><div class="days" id="days"></div>
+<div class="prog" aria-hidden="true"><div id="pb"></div></div><p class="proglbl" id="pl"></p>
+</div></section>
+
+<section><div class="wrap two">
+<div class="rv"><h2>Feito para a <mark>sua realidade</mark></h2></div>
+<div class="rv"><p>O livro tem duas camadas: conceitos universais, que servem em qualquer lugar, e exemplos locais com a moeda do seu país. Fala de PIX no Brasil, de MB WAY em Portugal e de pagamentos digitais em Angola, sem misturar realidades.</p>
+<p>Inclui modelos em branco para imprimir ou preencher: diário de gastos, orçamento mensal, calculadora de poupança, acompanhamento de dívidas, planeador de objetivos e checklist de segurança digital.</p></div>
+</div></section>
+
+<section id="faq"><div class="wrap"><h2 class="rv">Dúvidas <mark>frequentes</mark></h2>
+<div class="faq rv">
+<details><summary>Serve para quem vive em Angola?</summary><p>Sim. O guia tem exemplos em kwanzas, com situações do dia a dia angolano, como despesas pagas em dinheiro e dívidas com fornecedores. Brasil e Portugal também têm exemplos próprios.</p></details>
+<details><summary>Preciso de saber de finanças?</summary><p>Não. Os conceitos são explicados passo a passo, com contas simples. Começa pelo básico: saber o que entra e o que sai.</p></details>
+<details><summary>O livro indica taxas de juro ou produtos de investimento?</summary><p>Não. O capítulo de investimento explica conceitos como risco, liquidez e juros compostos, ensina a reconhecer fraudes e indica a quem recorrer em cada país. Taxas e impostos devem ser confirmados junto das entidades oficiais.</p></details>
+<details><summary>É aconselhamento financeiro?</summary><p>Não. É conteúdo educativo, com valores ilustrativos. Para decisões importantes, fale com um profissional qualificado do seu país.</p></details>
+<details><summary>Como recebo o e-book?</summary><p>É um guia digital em PDF. Depois da compra, recebe o acesso para descarregar e preencher as ferramentas.</p></details>
+</div></div></section>
+
+<section id="comprar"><div class="wrap"><div class="cta rv">
+<div><h2>Pronto para pôr o dinheiro <mark>sob controlo</mark>?</h2><p style="margin-bottom:0">Comece hoje. Em 30 dias terá o orçamento montado, um plano para as dívidas e a primeira reserva a crescer.</p><div class="price"><b>R$ 14,97</b><span>pagamento único</span></div><a class="btn buy big" href="#comprar">Sim, quero começar agora</a><p class="trust">Compra segura pela Hotmart. Receba o PDF logo após a confirmação do pagamento.</p></div>
+<ul class="checks"><li>50 páginas em PDF</li><li>8 ferramentas para preencher</li><li>Exemplos em R$, Kz e €</li><li>Plano de 30 dias</li></ul>
+</div></div></section>
+
+<footer><div class="wrap"><div class="fg">
+<div><div class="logo" style="font-size:1.2rem">dinheiro<i style="color:#14130e;opacity:.55">sob</i>controlo</div><p style="margin-top:.8rem;max-width:30ch;font-size:.92rem">Guia prático de organização financeira. Brasil · Angola · Portugal.</p></div>
+<div><h3>Navegar</h3><ul><li><a href="#capitulos">Capítulos</a></li><li><a href="#simulador">Simulador</a></li><li><a href="#plano">Plano de 30 dias</a></li><li><a href="#faq">Dúvidas</a></li></ul></div>
+<div><h3>Capítulos</h3><ul><li>Mentalidade</li><li>Orçamento</li><li>Poupança</li><li>Dívidas</li></ul></div>
+</div><p class="legal">Conteúdo educativo. Valores ilustrativos. Não constitui aconselhamento financeiro, jurídico ou fiscal. © 2026 Dinheiro Sob Controlo.</p></div></footer>
+
+<div class="sticky" id="sticky"><span>R$ 14,97<small style="display:block;font-weight:500;opacity:.7;font-size:.72rem">Dinheiro Sob Controlo</small></span><a class="btn buy" href="#comprar" style="min-height:44px;padding:.6rem 1.3rem">Quero comprar</a></div>
+
+<script>
+const CHECKOUT_URL="https://pay.hotmart.com/D108631789H";
+document.querySelectorAll('.buy').forEach(a=>{a.href=CHECKOUT_URL;a.target="_blank";a.rel="noopener"});
+const $=s=>document.querySelector(s);
+const chaps=[
+["Mentalidade e consumo consciente","4–9","Antes das contas, a relação com o dinheiro. Aprenda a separar necessidades, desejos e hábitos.",["Cinco perguntas antes de comprar","A regra do intervalo","Diário de gastos de 7 dias"]],
+["Orçamento pessoal","10–18","Um mapa simples do mês: quanto entra, para onde vai e quanto deve sobrar.",["Rendimento – despesas = saldo","Pagar-se primeiro","Como lidar com rendimento irregular"]],
+["Poupança e fundo de emergência","19–25","Guardar no início do mês, não o que sobra no fim. Calcule a meta e o tempo para a atingir.",["Fundo = despesas essenciais × meses","O que é (e não é) emergência","Seis estratégias para poupar mais"]],
+["Gestão de dívidas","26–33","Olhe para o que deve com números e escolha uma ordem de pagamento.",["Custo real do crédito","Métodos bola de neve e avalanche","Como negociar e evitar o ciclo"]],
+["Objetivos e planeamento","34–39","Dê valor, prazo e destino ao dinheiro, e veja se o objetivo cabe no orçamento.",["Objetivos bem definidos","Valor mensal = total ÷ meses","Revisão mensal de 15 minutos"]],
+["Introdução ao investimento","40–44","Conceitos antes de produtos: risco, retorno, liquidez, custos e sinais de fraude.",["Quando faz sentido começar","Juros compostos","Comparador de opções"]],
+["Pagamentos digitais e segurança","45–48","Conveniência com cuidado, com notas sobre PIX, MB WAY e serviços digitais em Angola.",["Boas práticas de segurança","Padrões de golpe mais comuns","Checklist e registo de pagamentos"]]];
+const tabs=$('#tabs'),det=$('#detail');
+chaps.forEach((c,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.innerHTML=`<span>${i+1}</span>${c[0]}`;b.onclick=()=>showChap(i);tabs.append(b)});
+function showChap(i){[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));const c=chaps[i];det.style.animation='none';det.offsetHeight;det.style.animation='';det.innerHTML=`<h3>${c[0]}</h3><p>${c[2]}</p><ul>${c[3].map(x=>`<li>${x}</li>`).join('')}</ul><span class="pg">Páginas ${c[1]}</span>`}
+showChap(0);
+// simulator
+const D={br:{inc:3000,ess:2350,sav:300,cur:v=>'R$ '+v.toLocaleString('pt-PT'),name:'Brasil'},ao:{inc:250000,ess:200000,sav:30000,cur:v=>v.toLocaleString('pt-PT')+' Kz',name:'Angola'},pt:{inc:1100,ess:800,sav:150,cur:v=>v.toLocaleString('pt-PT')+' €',name:'Portugal'}};
+let C='br';const sv=$('#sv');
+function setCountry(k){C=k;const d=D[k];document.querySelectorAll('#seg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===k));sv.min=Math.round(d.inc*.02);sv.max=Math.round(d.inc*.3);sv.step=Math.round(d.inc*.005);sv.value=d.sav;calc()}
+function calc(){const d=D[C],s=+sv.value,meta=d.ess*3,oth=d.inc-d.ess-s;
+$('#inc').textContent=d.cur(d.inc);$('#svv').textContent=d.cur(s);
+const p=v=>(v/d.inc*100).toFixed(1).replace('.',',')+'%';
+[['b1',d.ess],['b2',Math.max(oth,0)],['b3',s]].forEach(([id,v])=>{const e=$('#'+id);e.style.width=(v/d.inc*100)+'%';e.textContent=v/d.inc>.07?p(v):''});
+$('#goal').textContent='Meta de 3 meses de reserva ('+d.cur(d.ess)+' × 3): '+d.cur(meta);
+const m=Math.ceil(meta/s);$('#months').textContent=m+' meses';
+$('#when').textContent=oth<0?'Atenção: este valor ultrapassa o que sobra no orçamento de exemplo.':'É o tempo para formar o fundo guardando '+d.cur(s)+' por mês.'}
+document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>setCountry(b.dataset.c));sv.oninput=calc;setCountry('br');
+// plan
+const W=[["Semana 1","Conhecer a situação",["Escolher a moeda e o local de registo","Listar os rendimentos líquidos","Listar as despesas fixas","Levantar as despesas variáveis (extratos)","Começar o diário de gastos","Continuar o diário e classificar N, D ou H","Somar a semana e achar o maior gasto surpresa"]],
+["Semana 2","Organizar",["Montar o orçamento mensal","Definir limites por categoria","Rever subscrições e contas recorrentes","Definir a data de pagamento das contas","Separar uma conta para poupança","Definir o valor mensal de poupança","Rever a semana e ajustar"]],
+["Semana 3","Dívidas e emergência",["Fazer o inventário das dívidas","Pedir o custo total por escrito","Escolher um método de pagamento","Definir o valor extra para dívidas","Calcular a meta do fundo","Fazer o primeiro depósito no fundo","Rever a semana"]],
+["Semana 4","Planear e proteger",["Definir três objetivos","Calcular o valor mensal de cada um","Ordenar as prioridades","Fazer a checklist de segurança digital","Anotar dúvidas sobre produtos financeiros","Marcar a reunião mensal de revisão","Combinar as regras do fundo com a família","Reavaliar o orçamento com dados reais","Celebrar o progresso e fixar o próximo passo"]]];
+let wk=0;const done=new Set();
+const wb=$('#weeks');W.forEach((w,i)=>{const b=document.createElement('button');b.textContent=w[0];b.onclick=()=>{wk=i;drawDays()};wb.append(b)});
+function drawDays(){[...wb.children].forEach((b,i)=>b.setAttribute('aria-pressed',i===wk));let n=0;W.slice(0,wk).forEach(w=>n+=w[2].length);
+$('#days').innerHTML=W[wk][2].map((t,i)=>{const id=n+i+1;return `<button class="day${done.has(id)?' done':''}" data-d="${id}" style="animation-delay:${i*50}ms"><b>${id}</b><span>${t}</span></button>`}).join('');
+document.querySelectorAll('.day').forEach(b=>b.onclick=()=>{const id=+b.dataset.d;done.has(id)?done.delete(id):done.add(id);b.classList.toggle('done');prog()});prog()}
+function prog(){$('#pb').style.width=done.size/30*100+'%';$('#pl').textContent=done.size+' de 30 dias concluídos'+(done.size===30?' · Parabéns, está sob controlo!':'')}
+drawDays();
+// nav
+const bg=$('#burger'),dr=$('#drawer');
+function tog(o){bg.setAttribute('aria-expanded',o);dr.classList.toggle('open',o);document.body.style.overflow=o?'hidden':''}
+bg.onclick=()=>tog(bg.getAttribute('aria-expanded')!=='true');dr.querySelectorAll('a').forEach(a=>a.onclick=()=>tog(false));
+let ly=0;addEventListener('scroll',()=>{const y=scrollY;$('#pill').classList.toggle('hide',y>ly&&y>300);ly=y;$('#sticky').classList.toggle('show',y>600&&!inView(document.getElementById('comprar')))},{passive:true});
+function inView(e){const r=e.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0}
+// reveal + counters
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');
+if(e.target.id==='stats')e.target.querySelectorAll('[data-n]').forEach(c=>{const t=+c.dataset.n,s=performance.now();(function f(n){const k=Math.min((n-s)/1400,1);c.textContent=Math.round(t*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(s)});io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+document.querySelectorAll('.hero h1 span').forEach((s,i)=>s.style.animationDelay=i*90+'ms');
+// cover tilt
+const st=$('#stage'),cv=$('#cover');
+st.addEventListener('pointermove',e=>{const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;cv.style.transform=`rotateY(${x*26}deg) rotateX(${-y*20}deg)`});
+st.addEventListener('pointerleave',()=>cv.style.transform='');
+</script>
+</body>
+</html>
